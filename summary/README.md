@@ -66,3 +66,14 @@ module.exports=app=>{
 3. 购物车->支持用户在购物车中添加商品
 
 #### 将基础的 service 封装成中间件
+* 以 auth.js 为例
+1. 在 middleware 目录下创建 auth.js
+2. 在 router.js 中指定中间件的插入位置
+
+#### AOP
+* [AOP 的作用：](https://www.zhihu.com/question/24863332/answer/29265319)
+* middleware 就是 AOP 的应用例子
+
+#### 鉴权的正确流程
+1. password 不能以明文形式存于数据库（要加盐）
+2. 

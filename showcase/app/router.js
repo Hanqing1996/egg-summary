@@ -9,6 +9,6 @@ module.exports = app => {
   router.get('/product', controller.product.index);
   router.post('/product/addOne', controller.product.addOne);
   router.get('/product/getOneById', controller.product.getOneById);
-  router.post('/cart/addProductToCart', controller.cart.addProductToCart);
+  router.post('/cart/addProductToCart',app.middleware.auth(), controller.cart.addProductToCart);
   router.post('/user/login', controller.user.login);
 };
