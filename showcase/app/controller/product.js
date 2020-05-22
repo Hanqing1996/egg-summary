@@ -2,9 +2,9 @@
 
 const {Controller} = require('egg');
 
-const ProductModel=require('../model/product')
-
-const productModel=new ProductModel;
+// const ProductModel=require('../model/product')
+//
+// const productModel=new ProductModel;
 
 class ProductController extends Controller {
     async index() {
@@ -14,7 +14,7 @@ class ProductController extends Controller {
 
     async getOneById(){
         const {id}=this.ctx.query;
-        const product=await productModel.getOneById(id);
+        const product=await this.ctx.model.product.getOneById(id);
         this.ctx.body={
             product
         }
@@ -22,9 +22,10 @@ class ProductController extends Controller {
 
     async addOne(){
         const {product}=this.ctx.request.body;
-        await productModel.addOne(product)
+        await this.ctx.model.product.addOne(product)
+        const list=await this.ctx.model.product.list()
         this.ctx.body={
-            products:await productModel.list()
+            products:list
         }
     }
 }

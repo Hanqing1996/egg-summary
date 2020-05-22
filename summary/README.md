@@ -33,4 +33,18 @@ config.security = {
 * 是一种 ORM（Object Relationship Map）
 
 #### service 
-> 在现代的 web 应用中
+> 在现代的 web 应用中，MVC 中的 Model 承担的部分过重，因此需要 service 做更具体的封装
+
+#### loader
+> 将文件以属性形式加载到对象上
+* 比如我想通过 this.ctx.model.product 访问 model/product.js 文件
+```
+// app.js
+'use strict';
+const path=require('path');
+
+module.exports=app=>{
+    const modelPaths=app.loader.getLoadUnits().map(unit=>path.join(unit.path,'app/model'));
+    app.loader.loadToContext(modelPaths,'model')
+}
+```
