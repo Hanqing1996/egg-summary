@@ -33,7 +33,7 @@ config.security = {
 * 是一种 ORM（Object Relationship Map）
 
 #### service 
-> 在现代的 web 应用中，MVC 中的 Model 承担的部分过重，因此需要 service 做更具体的封装
+> 在现代的 web 应用中，MVC 中的 Model 承担的部分过重，因此需要 service 做更具体的封装/扩展
 
 #### loader
 > 将文件以属性形式加载到对象上
@@ -48,3 +48,21 @@ module.exports=app=>{
     app.loader.loadToContext(modelPaths,'model')
 }
 ```
+
+#### context
+一次请求的上下文
+
+#### 什么样的逻辑放 service
+> 将 model 的部分逻辑转移至 service 中
+1. 跨 model 操作
+    * userModel 不要调用 productModel，放到 service 里去处理。
+    * cartService 最好不要调用 userService，而让 cartController 中去调用 userService
+2. model 中涉及复杂运算的部分
+3. model 抽象方法的调用（对 controller 与 model 解耦），比如库存的查询
+
+#### 需求
+1. 用户系统->支持登录验证
+2. 商品->支持商品查看，购买
+3. 购物车->支持用户在购物车中添加商品
+
+#### 将基础的 service 封装成中间件
