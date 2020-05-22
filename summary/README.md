@@ -1,0 +1,21 @@
+#### web 框架
+* express
+* egg.js（阿里）
+* koa（精简，直接支持 async,await）
+* hapi（高性能）
+* fastify
+
+#### fork 进程
+> 作用是克隆进程，也就是将原先的一个进程再克隆出一个来，克隆出的这个进程就是原进程的子进程，这个子进程和其他的进程没有什么区别，同样拥有自己的独立的地址空间。不同的是子进程是在fork返回之后才开始执行的，就像一把叉子一样，执行fork之后，父子进程就分道扬镳了，所以fork这个名字就很形象，叉子的意思。
+
+
+#### egg.js 允许 post 请求
+```
+// config/config.default.js
+
+config.security = {
+    csrf:{
+      enable:false
+    }
+};
+```
