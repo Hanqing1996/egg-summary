@@ -19,3 +19,18 @@ config.security = {
     }
 };
 ```
+
+#### 为什么 app 目录下默认没有 model 文件夹
+> 因为 egg 的 model 一般是基于 sequelize 的
+
+#### 高内聚
+> 同一模型内部，具有强共性和强联系
+
+#### 低耦合
+> 改A必改B
+
+#### sequelize
+* 是一种 ORM（Object Relationship Map）
+
+#### service 
+> 在现代的 web 应用中

@@ -2,7 +2,9 @@
 
 const {Controller} = require('egg');
 
-const products=[];
+const ProductModel=require('../model/product')
+
+const productModel=new ProductModel;
 
 class ProductController extends Controller {
     async index() {
@@ -12,7 +14,7 @@ class ProductController extends Controller {
 
     async getOneById(){
         const {id}=this.ctx.query;
-        const product=products.find(p=>p.id==id);
+        const product=await productModel.getOneById(id);
         this.ctx.body={
             product
         }
@@ -20,9 +22,9 @@ class ProductController extends Controller {
 
     async addOne(){
         const {product}=this.ctx.request.body;
-        if(product) products.push(product);
+        await productModel.addOne(product)
         this.ctx.body={
-            products
+            products:await productModel.list()
         }
     }
 }
