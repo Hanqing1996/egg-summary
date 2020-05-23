@@ -77,3 +77,55 @@ module.exports=app=>{
 #### 鉴权的正确流程
 1. password 不能以明文形式存于数据库（要加盐）
 2. 
+
+
+
+#### child_process
+* 一个方法：spawn
+* 一个类：ChildProcess
+* 进程通讯
+    * stdin,stdout
+    ```
+    
+    ```    
+    * ipc
+    ```
+    
+    ```       
+
+
+#### [egg 的多进程](https://eggjs.org/zh-cn/core/cluster-and-ipc.html)
+* 为什么一段时间内，只能有一个 Node.js 进程运行在一个 CPU 上
+1. 我们说 Node.js 是单线程的（其实不太准确，因为 libuv 在IO，网络请求方面用到了多线程），是因为 用于解析 js 的 v8 是单线程的。
+2. 所以一个 Node.js 进程只由一个 js 线程构成（只考虑计算等任务）
+3. 而 OS 大多支持线程调度（即线程是 CPU 的最小调度单位，某一时间段内某个 CPU 上只有一个进程在运行） 
+2. 所以说，一段时间内，只能有一个 Node.js 进程运行在一个 CPU 上
+* [HTTP和TCP的区别](https://www.zhihu.com/question/38648948)
+1. TCP 只负责建立连接及保证连接可靠，至于传输内容，它不理会。
+2. HTTP 规定了传输的内容（请求体，响应体内容，格式...）。可以认为 HTTP 是基于 TCP 的。 
+3. Node.js 的进程端口监听由 TCP 实现。
+* [为什么通过 cluster 模块 fork 出的多个子进程可以同时监听一个端口](https://cnodejs.org/topic/56e84480833b7c8a0492e20c)
+1. 端口仅由master进程中的内部TCP服务器监听了一次。
+2. 不会出现端口被重复监听报错，是由于，worker进程中，最后执行监听端口操作的方法，已被cluster模块主动hack。
+* Node.js 是非阻塞的，怎么理解？
+1. web service 相关任务可以分为计算密集型（CPU耗时）和IO密集型（IO，网络请求等耗时）
+2. JavaScript 是单线程，非阻塞的。具体来说它利用 EventLoop 机制保证那些耗时的 IO 操作由其他线程（C++等）执行，执行完毕后通知 js 单进程拿结果（异步）。所以说 js 不会被 IO 阻塞。
+3. 相比之下，java 比较实诚，它会开多个线程，然后耐性地等IO完成再执行自己下一步的任务。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
