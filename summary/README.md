@@ -84,15 +84,8 @@ module.exports=app=>{
 * 一个方法：spawn
 * 一个类：ChildProcess
 * 进程通讯
-    * stdin,stdout
-    ```
-    
-    ```    
+    * stdin,stdout  
     * ipc
-    ```
-    
-    ```       
-
 
 #### [egg 的多进程](https://eggjs.org/zh-cn/core/cluster-and-ipc.html)
 * 为什么一段时间内，只能有一个 Node.js 进程运行在一个 CPU 上

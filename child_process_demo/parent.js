@@ -4,7 +4,7 @@ const child = spawn(
     'node',
     ['./child.js', 'abc'],
     {
-        stdio: ['pipe', 'pipe', 'pipe'],
+        stdio: ['pipe', 'pipe', 'pipe','ipc'],
     }
 )
 
@@ -17,3 +17,6 @@ child.stdout.on('data', (data) => {
 })
 
 child.stdin.write('greeting from father')
+
+// ipc 传递消息
+child.send('msg')
