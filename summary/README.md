@@ -105,7 +105,34 @@ module.exports=app=>{
 2. JavaScript 是单线程，非阻塞的。具体来说它利用 EventLoop 机制保证那些耗时的 IO 操作由其他线程（C++等）执行，执行完毕后通知 js 单进程拿结果（异步）。所以说 js 不会被 IO 阻塞。
 3. 相比之下，java 比较实诚，它会开多个线程，然后耐性地等IO完成再执行自己下一步的任务。
 
+#### [schedule](https://eggjs.org/zh-cn/basics/schedule.html)（定时任务）
+* [type](https://eggjs.org/zh-cn/basics/schedule.html#%E7%B1%BB%E5%9E%8B)
+    * worker:每次处理 schedule 任务的只有一个进程
+    * all:所有进程都执行 schedule 任务
+* [cron](https://eggjs.org/zh-cn/basics/schedule.html#cron)
+```
+module.exports = {
+  schedule: {
+    // 每三小时准点执行一次
+    cron: '0 0 */3 * * *',
+  },
+};
+```
+```
+秒/分/时/日/月/星期几 
 
+* 1 22 5 12 5=>12月5号(星期五)的22:01执行相应脚本
+```
+
+
+#### npm run start 和 npm run dev   
+```
+// production 环境下启动，多进程
+npm run start
+
+// development 环境下启动，单进程
+npm run dev    
+```
 
 
 
