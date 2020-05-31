@@ -31,6 +31,7 @@ config.security = {
 
 #### sequelize
 * 是一种 ORM（Object Relationship Map）
+* 这个项目没用到，因为 postgresql 一直装不上去
 
 #### service 
 > 在现代的 web 应用中，MVC 中的 Model 承担的部分过重，因此需要 service 做更具体的封装/扩展
@@ -134,6 +135,14 @@ npm run start
 npm run dev    
 ```
 
+#### 异常处理
+1. 构建 error 类（err 目录下）
+2. 把 error 类挂载到 app 上（app.js）
+3. 抛出错误
+```
+// controller/product.js
+throw new this.app.error.InvalidParam('foo','foo should be bar')
+```
 
 
 

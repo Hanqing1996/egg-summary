@@ -4,6 +4,8 @@ const {Controller} = require('egg');
 
 class ProductController extends Controller {
     async index() {
+        throw new this.app.error.InvalidParam('foo','foo should be bar')
+
         const { ctx } = this;
         ctx.body = 'product';
     }
